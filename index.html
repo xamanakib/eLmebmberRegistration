@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> >
+    <style>
+        body {
+            background: -webkit-linear-gradient(left, #230233, #0e046d);
+        }
+        
+        .header {
+            font-size: 22px;
+            font-family: inherit;
+            font-weight: bolder;
+            text-align: center;
+        }
+        
+        .header a {
+            color: #2bce75;
+            padding: 5px;
+            text-decoration: none;
+            border: 2px solid;
+            border-radius: 7px;
+        }
+        
+        .header:hover {
+            transform: scale(.95);
+        }
+        
+        .register .nav-tabs .nav-link:hover {
+            border: none;
+        }
+        
+        .text-align {
+            margin-top: -3%;
+            margin-bottom: -9%;
+            padding: 10%;
+            margin-left: 30%;
+        }
+        
+        .form-new {
+            width: 80%;
+            margin: auto;
+            padding: 5%;
+            border: 2px solid #03612e;
+            border-radius: 14px;
+        }
+        
+        .register-heading {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10%;
+            color: #2bce75;
+        }
+        
+        .register-heading h1 {
+            margin-left: 21%;
+            margin-bottom: 10%;
+            color: #e9ecef;
+        }
+        
+        .register {
+            background: -webkit-linear-gradient(left, #0e046d, #230233);
+            color: white;
+            /* margin-top: 3%; */
+            /* padding: 3%; */
+        }
+        
+        .btnSubmit {
+            width: 50%;
+            border-radius: 1rem;
+            padding: 1.5%;
+            color: #fff;
+            background-color: #03612e;
+            border: none;
+            cursor: pointer;
+            margin-right: 6%;
+            color: rgb(246, 246, 252);
+            margin-top: 4%;
+        }
+        
+        #radio_Form {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        #radio_Form span {
+            margin: 10px;
+            width: 100%;
+        }
+        
+        .caution {
+            color: red;
+            text-align: center;
+        }
+        
+        @media only screen and (max-width: 500px) {
+            #radio_Form {
+                flex-direction: column;
+            }
+            .form-new {
+                width: 100%;
+                padding: 0;
+            }
+            .register-heading {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <p class="header"><a href="">Home</a></p>
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-pane fade show active text-align form-new" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Membership For e-Library</h3>
+                    <div class="row register-form">
+                        <div class="col-md-12" id="subTxt">
+                            <form method="post" autocomplete="off" name="google-sheet">
+                                <div class="form-group">
+                                    <input type="text" name="Name" class="form-control" placeholder="Your Name *" value="" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="Email" class="form-control" placeholder="Your Email *" value="" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" name="Phone" class="form-control" placeholder="Your Mobile Number *" value="" required="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Del_Address" class="form-control" placeholder="Your Address (Book deliver here) *" value="" required="" />
+                                </div>
+                                <div class="form-group" id="radio_Form">
+                                    <span>
+                                    How do you take Membership ? <br>
+                                    <input type="radio" name="MemOpt" value="Paid Membership" required="" /> Paid MemberShip <br>
+                                    <input type="radio" name="MemOpt" value="Lend Books" required="" /> Lend Books <br>
+                                    <input type="radio" name="MemOpt" value="Donate Books" required="" /> Donate Books <br>
+                                </span>
+                                    <span>
+                                    Are you a student ? <br>
+                                    <input type="radio" name="Student ?" value="YES" required="" /> Yes <br>
+                                    <input type="radio" name="Student ?" value="NO" required="" /> No <br>
+                                    
+                                </span>
+                                </div>
+                                <br><br>
+                                <p class="caution"> ( Membership will be deleted if you use same email and phone number multiple times )</p>
+                                <div class="form-group">
+                                    <input type="submit" name="submit" class="btnSubmit btn-block" value="Register" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw3hd2YV8WzzHMjlztju8opO6HLykrE4tqxsb5uykLAKfjDTBpE/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => alert("Thanks for Register..! We Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+
+
+            document.getElementById('subTxt').innerHTML = `<h6>Submitted Successfully....! Your MemberShip is under reveiw. We'll let you know in email or phone number</h6>`
+        })
+    </script>
+    <script src="script.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>
