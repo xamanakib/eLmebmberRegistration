@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Membership Registration -eLibrary</title>
+    <link rel="icon" href="icon.png" type="image/x-icon">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> >
     <style>
         body {
@@ -82,6 +83,10 @@
             margin-top: 4%;
         }
         
+        .btnSubmit:hover {
+            transform: scale(.98);
+        }
+        
         #radio_Form {
             display: flex;
             justify-content: space-evenly;
@@ -101,12 +106,23 @@
             #radio_Form {
                 flex-direction: column;
             }
+            #radio_Form span {
+                margin: 10px auto;
+                width: 80%;
+            }
+            .form-control {
+                width: 80%;
+                margin: auto;
+            }
             .form-new {
                 width: 100%;
                 padding: 0;
             }
             .register-heading {
-                font-size: 1.5rem;
+                font-size: 7vw;
+            }
+            .caution {
+                font-size: 4vw;
             }
         }
     </style>
